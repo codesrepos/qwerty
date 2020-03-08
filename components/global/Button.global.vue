@@ -46,11 +46,18 @@ export default {
     click: {
       type: Function,
       required: false
+    },
+    link: {
+      type: Boolean,
+      required: false
     }
   },
   computed: {
     className() {
-      const options = ['variant', 'outline', 'icon', 'rounded']
+      let options = ['variant', 'outline', 'icon', 'rounded', 'link']
+      if (this.link) {
+        options = options.filter((option) => option !== 'variant')
+      }
       return options
         .filter((option) => this[option])
         .reduce((total, current) => {
@@ -61,6 +68,8 @@ export default {
             className = 'icon'
           } else if (current === 'rounded') {
             className = 'rounded'
+          } else if (current === 'link') {
+            className = 'link'
           }
           return `${total} ${className}`
         }, '')
@@ -90,6 +99,8 @@ export default {
   color: $light;
   font-size: inherit;
   position: relative;
+  border: none;
+  background: transparent;
   &::before {
     content: '';
     transform: scaleX(0);

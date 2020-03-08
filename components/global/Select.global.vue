@@ -1,9 +1,13 @@
 <template>
-  <v-select
-    v-model="selected"
-    :options="options"
-    :class="{ 'w-input': withInput }"
-  />
+  <client-only>
+    <v-select
+      @input="onInput"
+      :clearable="false"
+      :options="options"
+      :value="selected"
+      :class="{ 'w-input': withInput }"
+    />
+  </client-only>
 </template>
 
 <script>
@@ -22,6 +26,11 @@ export default {
       type: Boolean,
       default: false
     }
+  },
+  methods: {
+    onInput(value) {
+      this.$emit('input', value)
+    }
   }
 }
 </script>
@@ -36,11 +45,15 @@ export default {
       border: none;
       font-size: 16px;
       color: $light;
+      &:hover {
+        cursor: pointer;
+      }
     }
     &__dropdown-toggle {
       height: 100%;
       border: 1px solid $light;
       padding: 0 6px;
+      min-height: 40px;
       @include hover-active-focus() {
         border-color: $primary;
       }

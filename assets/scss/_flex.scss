@@ -46,11 +46,22 @@
     flex-direction: row !important;
   }
 
+  .flex-column#{$breakpoint}-reverse {
+    flex-direction: column-reverse !important
+  }
+  .flex-row#{$breakpoint}-reverse {
+    flex-direction: row-reverse !important;
+  }
+
   .flex#{$breakpoint}-wrap {
     flex-wrap: wrap !important;
   }
   .flex#{$breakpoint}-nowrap {
     flex-wrap: nowrap !important;
+  }
+
+  .flex-fill#{$breakpoint} {
+    flex: 1;
   }
 
   .flex#{$breakpoint}-center {

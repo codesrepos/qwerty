@@ -1,17 +1,16 @@
 <template>
-  <fragment>
+  <div>
     <input
       type="checkbox"
       class="checkbox"
       :id="id"
       :name="name || id"
-      :checked="checked"
       @change="$emit('input', $event.target.checked)"
     />
     <label :for="id">
       {{ label }}
     </label>
-  </fragment>
+  </div>
 </template>
 
 <script>
@@ -28,10 +27,6 @@ export default {
     name: {
       type: String,
       required: false
-    },
-    checked: {
-      type: Boolean,
-      required: true
     }
   }
 }
@@ -45,9 +40,10 @@ export default {
     margin: 0.2em;
     cursor: pointer;
     padding: 0.2em;
+    position: relative;
     &::before {
       content: '';
-      border: 2px solid #bb86fc;
+      border: 2px solid $primary;
       border-radius: 4px;
       display: inline-block;
       width: 24px;
@@ -59,33 +55,29 @@ export default {
       vertical-align: bottom;
       color: transparent;
       transition: transform 0.2s ease;
-    }
-    &:active {
-      &::before {
-        transform: scale(0);
-      }
+      margin-right: 24px;
     }
   }
   &:checked {
     + label {
       &::before {
-        background-color: black;
-        border-color: #bb86fc;
-        color: #bb86fc;
+        background-color: transparent;
+        border-color: $primary;
+        color: $primary;
+      }
+      &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 7px;
+        left: 12px;
+        width: 6px;
+        height: 12px;
+        border: solid $primary;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
       }
     }
   }
-}
-input:checked + label:after {
-  content: '';
-  display: block;
-  position: absolute;
-  top: 2px;
-  left: 9px;
-  width: 6px;
-  height: 14px;
-  border: solid #0079bf;
-  border-width: 0 2px 2px 0;
-  transform: rotate(45deg);
 }
 </style>

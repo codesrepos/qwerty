@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper d-sm-flex flex-fill">
+  <div class="input-s-wrapper d-sm-flex flex-fill">
     <Input
       :value="value"
       label="Wpisz lokalizację"
@@ -34,7 +34,7 @@ export default {
 </script>
 
 <style lang="scss">
-.wrapper {
+.input-s-wrapper {
   @include media-breakpoint-down(xs) {
     width: 90%;
     max-width: 340px;

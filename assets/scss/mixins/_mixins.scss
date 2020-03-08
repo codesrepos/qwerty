@@ -1,0 +1,9 @@
+@import 'breakpoints';
+
+@mixin hover-active-focus {
+  &:hover,
+  &:active,
+  &:focus {
+    @content;
+  }
+}
